@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mQLPhieuMuon"
+        android:title="Quản lý phiếu mượn"
+        android:icon="@drawable/baseline_home_24"
+        >
+    </item>
+    <item
+        android:id="@+id/mQLLoaiSach"
+        android:title="Quản lý loại sách"
+        android:icon="@drawable/baseline_menu_book_24"
+        >
+    </item>
+    <item
+        android:id="@+id/mQLSach"
+        android:title="Quản lý sách"
+        android:icon="@drawable/baseline_book_24"
+        >
+    </item>
+    <item
+        android:id="@+id/mQLThanhVien"
+        android:title="Quản lý thành viên"
+        android:icon="@drawable/baseline_people_24"
+        >
+    </item>
+    <item
+        android:title="Thống kê">
+        <menu>
+            <item
+                android:id="@+id/mTop"
+                android:title="Top 10 sách mượn nhiều nhất"
+                android:icon="@drawable/baseline_vertical_align_top_24"
+                >
+            </item>
+            <item
+                android:id="@+id/mDoanhThu"
+                android:title="Doanh thu"
+                android:icon="@drawable/baseline_attach_money_24"
+                >
+            </item>
+        </menu>
+    </item>
+
+    <item
+        android:title="Người dùng">
+        <menu>
+            <item
+                android:id="@+id/mThemUser"
+                android:title="Thêm người dùng"
+                android:icon="@drawable/baseline_person_add_alt_1_24"
+                >
+            </item>
+            <item
+                android:id="@+id/mDoiMatKhau"
+                android:title="Đổi mật khẩu"
+                android:icon="@drawable/baseline_lock_24"
+                >
+            </item>
+            <item
+                android:id="@+id/mThoat"
+                android:title="Thoát"
+                android:icon="@drawable/baseline_logout_24"
+                >
+            </item>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".DangNhapActivity"
+android:orientation="vertical">
+
+<ImageView
+    android:src="@drawable/fpt"
+    android:layout_gravity="center"
+    android:layout_width="300dp"
+    android:layout_height="200dp">
+</ImageView>
+
+<EditText
+    android:id="@+id/edtuser"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/custom_edt"
+    android:layout_width="370dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:hint="User Name"></EditText>
+
+    <EditText
+        android:id="@+id/edtpassword"
+        android:layout_marginBottom="10dp"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_edt"
+        android:hint="Password"></EditText>
+
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_btn"
+        android:text="LOGIN"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"></Button>
+
+</LinearLayout>
