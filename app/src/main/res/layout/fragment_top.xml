@@ -5,6 +5,8 @@
     android:orientation="vertical"
     >
     <TextView
+        android:textColor="#E91E1E"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:gravity="center"
         android:text="TOP 10 SÁCH MƯỢN NHIỀU NHẤT"

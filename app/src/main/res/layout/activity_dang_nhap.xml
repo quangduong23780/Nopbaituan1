@@ -24,6 +24,7 @@ android:orientation="vertical">
     android:hint="User Name"></EditText>
 
     <EditText
+        android:inputType="textPassword"
         android:id="@+id/edtpassword"
         android:layout_marginBottom="10dp"
         android:layout_width="370dp"

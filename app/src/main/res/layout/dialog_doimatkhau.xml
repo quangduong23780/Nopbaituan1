@@ -5,42 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DangNhapActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
+    <TextView
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="#E91E1E"
+        android:text="ĐỔI MẬT KHẨU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
 
     <ImageView
         android:src="@drawable/baseline_lock_24"
         android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="200dp">
+        android:layout_width="150dp"
+        android:layout_height="150dp">
     </ImageView>
 
     <EditText
         android:id="@+id/edtoldpass"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_edt"
-        android:layout_width="370dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="Old pass"></EditText>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_edt"
+        android:hint="Old pass"
+        android:inputType="textPassword"></EditText>
 
     <EditText
         android:id="@+id/edtnewpass"
-        android:layout_width="370dp"
+        android:layout_width="309dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_edt"
-        android:hint="New password"></EditText>
+        android:hint="New password"
+        android:inputType="textPassword"></EditText>
 
     <EditText
         android:id="@+id/edtrenewpass"
-        android:layout_width="370dp"
+        android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_edt"
-        android:hint="Enter the password"></EditText>
+        android:hint="Enter the password"
+        android:inputType="textPassword"></EditText>
 
 
 </LinearLayout>

@@ -10,11 +10,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,13 +35,19 @@ import com.example.myapplication.fragment.QLSachFregment;
 import com.example.myapplication.fragment.QLThanhVienFragment;
 import com.example.myapplication.fragment.ThemUserFragment;
 import com.example.myapplication.fragment.TopFrigment;
+import com.example.myapplication.model.ThanhVien;
+import com.example.myapplication.model.ThuThu;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
     NavigationView navigationView;
     FrameLayout frameLayout;
     DrawerLayout drawerLayout;
+    ArrayList<ThuThu> thuthulist;
+    ThuThuDAO thuThuDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.navigaionView);
         frameLayout=findViewById(R.id.frameLayout);
         drawerLayout=findViewById(R.id.drawerLayout);
+        View headerLayout = navigationView.getHeaderView(0);
+        TextView txtname = headerLayout.findViewById(R.id.txtname);
 
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
@@ -95,6 +106,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //hien thi chức năng của admin
+        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN",MODE_PRIVATE);
+        String loaiTK = sharedPreferences.getString("loaitaikhoan","");
+        if (loaiTK.equals("admin")){
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.mThemUser).setVisible(true);
+        }
+
+        String hoten = sharedPreferences.getString("hoten","");
+        txtname.setText("Xin chào: " + hoten);
     }
 
     @Override
@@ -104,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void showDialogDoiMatKhau(){
-        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+    private void showDialogDoiMatKhau() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_doimatkhau,null);
+        View view = inflater.inflate(R.layout.dialog_doimatkhau, null);
         EditText edtoldpass = view.findViewById(R.id.edtoldpass);
         EditText edtnewpass = view.findViewById(R.id.edtnewpass);
         EditText edtrenewpass = view.findViewById(R.id.edtrenewpass);
@@ -119,26 +141,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        builder.setPositiveButton("Huỷ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
         builder.setNegativeButton("Cập nhật", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String oldpass = edtoldpass.getText().toString();
                 String newpass = edtnewpass.getText().toString();
                 String renewpass = edtrenewpass.getText().toString();
-                if(newpass.equals(renewpass)){
-                    SharedPreferences sharedPreferences = getSharedPreferences("THONG TIN",MODE_PRIVATE);
-                    String matt = sharedPreferences.getString("matt","");
-                    ThuThuDAO thuThuDAO = new ThuThuDAO( MainActivity.this);
-                    boolean check = thuThuDAO.CapNhatMatKhau(matt,oldpass,newpass);
-                    if (check){
-                        Toast.makeText(MainActivity.this,"Cập nhật mật khẩu thành công",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this,DangNhapActivity.class);
+                if (newpass.equals(renewpass)) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("THONG TIN", MODE_PRIVATE);
+                    String matt = sharedPreferences.getString("matt", "");
+                    ThuThuDAO thuThuDAO = new ThuThuDAO(MainActivity.this);
+                    boolean check = thuThuDAO.CapNhatMatKhau(matt, oldpass, newpass);
+                    if (check) {
+                        Toast.makeText(MainActivity.this, "Cập nhật mật khẩu thành công", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, DangNhapActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    }else {
-                        Toast.makeText(MainActivity.this,"Cập nhật mật khẩu không thành công",Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Cập nhật mật khẩu không thành công", Toast.LENGTH_LONG).show();
                     }
-                }else {
-                    Toast.makeText(MainActivity.this,"Password không khớp với nhau",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Password không khớp với nhau", Toast.LENGTH_LONG).show();
                 }
             }
         });

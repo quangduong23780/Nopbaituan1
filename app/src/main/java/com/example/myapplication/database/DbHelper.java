@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String dbThuThu = "CREATE TABLE THUTHU(matt TEXT PRIMARY KEY, hoten TEXT, matkhau TEXT)";
+        String dbThuThu = "CREATE TABLE THUTHU(matt TEXT PRIMARY KEY, hoten TEXT, matkhau TEXT, loaitaikhoan TEXT)";
         sqLiteDatabase.execSQL(dbThuThu);
         String dbThanhVien = "CREATE TABLE THANHVIEN(matv INTEGER PRIMARY KEY AUTOINCREMENT, hoten TEXT, namsinh TEXT)";
         sqLiteDatabase.execSQL(dbThanhVien);
@@ -27,7 +27,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(qLoai);
         String qSach = "INSERT INTO SACH VALUES(1,'Rùa và thỏ',10000,1),(2,'Bến xe',15000,2),(3,'Toán 12',20000,3)";
         sqLiteDatabase.execSQL(qSach);
-        String qThuThu = "INSERT INTO THUTHU VALUES('thuthu01','Tống Quang A','a123'),('thuthu02','Tống Quang B','b123'),('thuthu03','Tống Quang C','c123')";
+        String qThuThu = "INSERT INTO THUTHU VALUES('admin','Tống Quang A','123','admin'),('thuthu01','Tống Quang B','123','thuthu'),('thuthu02','Tống Quang C','123','thuthu')";
         sqLiteDatabase.execSQL(qThuThu);
         String qThanhVien = "INSERT INTO THANHVIEN VALUES(1,'Nguyễn Quang A','2003'),(2,'Nguyễn Quang B','2002'),(3,'Nguyễn Quang C','2001')";
         sqLiteDatabase.execSQL(qThanhVien);

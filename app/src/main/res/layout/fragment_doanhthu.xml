@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:textSize="20dp"
+        android:text="Bắt đầu từ "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <EditText
+        android:id="@+id/edtStart"
+        android:background="@drawable/custom_edt"
+        android:hint="Chọn ngày bắt đầu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </EditText>
+
+    <TextView
+        android:textSize="20dp"
+        android:text="Đến ngày "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <EditText
+        android:id="@+id/edtEnd"
+        android:background="@drawable/custom_edt"
+        android:hint="Chọn ngày kết thúc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </EditText>
+
+    <Button
+        android:id="@+id/btnThongKe"
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_btn"
+        android:text="THỐNG KÊ"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        app:backgroundTint="@null">
+    </Button>
+
+    <TextView
+        android:layout_gravity="center"
+        android:text="10000VNĐ"
+        android:id="@+id/txtKetQua"
+        android:textSize="24dp"
+        android:textColor="#E91E1E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+</LinearLayout>

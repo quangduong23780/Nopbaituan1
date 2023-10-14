@@ -49,6 +49,7 @@
                 android:id="@+id/mThemUser"
                 android:title="Thêm người dùng"
                 android:icon="@drawable/baseline_person_add_alt_1_24"
+                android:visible="false"
                 >
             </item>
             <item
