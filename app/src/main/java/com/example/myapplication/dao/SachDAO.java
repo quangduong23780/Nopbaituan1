@@ -21,33 +21,35 @@ public class SachDAO {
     public ArrayList<Sach> getDSDauSach(){
         ArrayList<Sach> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase  = dbHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT sc.masach, sc.tensach, sc.giathue, sc.maloai, lo.tenloai FROM SACH sc, LOAISACH lo WHERE sc.maloai = lo.maloai",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT sc.masach, sc.tensach, sc.giathue, sc.maloai, lo.tenloai,sc.namxb FROM SACH sc, LOAISACH lo WHERE sc.maloai = lo.maloai",null);
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new Sach(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getInt(3),cursor.getString(4)));
+                list.add(new Sach(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getInt(3),cursor.getString(4),cursor.getInt(5)));
             }while (cursor.moveToNext());
         }
 
         return list;
     }
-    public boolean themSachMoi(String tensach, int giatien, int maloai){
+    public boolean themSachMoi(String tensach, int giatien, int maloai,int namxb){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("tensach",tensach);
         contentValues.put("giathue",giatien);
         contentValues.put("maloai",maloai);
+        contentValues.put("namxb",namxb);
         long check = sqLiteDatabase.insert("SACH",null,contentValues);
         if (check == -1)
             return false;
         return true;
     }
-    public boolean capNhatThongTinSach(int masach,String tensach,int giathue, int maloai){
+    public boolean capNhatThongTinSach(int masach,String tensach,int giathue, int maloai,int namxb){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("tensach",tensach);
         contentValues.put("giathue",giathue);
         contentValues.put("maloai",maloai);
+        contentValues.put("namxb",namxb);
         long check = sqLiteDatabase.update("SACH",contentValues,"masach =?",new String[]{String.valueOf(masach)});
         if (check == -1)
             return false;

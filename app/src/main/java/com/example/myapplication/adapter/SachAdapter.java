@@ -2,12 +2,16 @@ package com.example.myapplication.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -23,6 +28,7 @@ import com.example.myapplication.model.Sach;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
     private Context context;
@@ -30,7 +36,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
     private ArrayList<HashMap<String,Object>> listHM;
     private SachDAO sachDAO;
 
-    public SachAdapter(Context context, ArrayList<Sach> list, ArrayList<HashMap<String,Object>> listHM,SachDAO sachDAO) {
+    public SachAdapter(Context context, ArrayList<Sach> list, ArrayList<HashMap<String, Object>> listHM, SachDAO sachDAO) {
         this.context = context;
         this.list = list;
         this.listHM = listHM;
@@ -52,11 +58,12 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
        holder.txtGiaThue.setText("Gía thuê: " +list.get(position).getGiathue());
        holder.txtMaLoai.setText("Mã loại: " +list.get(position).getMaloai());
        holder.txtTenLoai.setText("Tên loại: " +list.get(position).getTenloai());
+       holder.txtNamXB.setText("Năm xuất bản: "+ list.get(position).getNamxb());
 
        holder.ivEdit.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-
+                showDialog(list.get(holder.getAdapterPosition()));
            }
        });
 
@@ -87,8 +94,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
         return list.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtMaSach,txtTenSach,txtGiaThue,txtMaLoai,txtTenLoai;
+        TextView txtMaSach,txtTenSach,txtGiaThue,txtMaLoai,txtTenLoai,txtNamXB;
         ImageView ivDel, ivEdit;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +106,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
             txtGiaThue = itemView.findViewById(R.id.txtGiaThue);
             txtMaLoai = itemView.findViewById(R.id.txtMaLoai);
             txtTenLoai = itemView.findViewById(R.id.txtTenLoai);
+            txtNamXB = itemView.findViewById(R.id.txtNamXB);
             ivEdit = itemView.findViewById(R.id.ivEdit);
             ivDel = itemView.findViewById(R.id.ivDel);
         }
@@ -112,11 +121,13 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
         EditText edtTenSach = view.findViewById(R.id.edtTenSach);
         EditText edtTien = view.findViewById(R.id.edtTien);
         TextView txtMaSach = view.findViewById(R.id.txtMaSach);
+        EditText edtNamXB = view.findViewById(R.id.edtNamXB);
         Spinner spnLoaiSach = view.findViewById(R.id.spnLoaiSach);
 
         txtMaSach.setText("Mã sách: " + sach.getMasach());
         edtTenSach.setText(sach.getTensach());
         edtTien.setText(String.valueOf(sach.getGiathue()));
+        edtNamXB.setText(String.valueOf(sach.getNamxb()));
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(
                 context,
@@ -142,8 +153,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
                 int tien =Integer.parseInt( edtTien.getText().toString());
                 HashMap<String,Object> hs = (HashMap<String, Object>) spnLoaiSach.getSelectedItem();
                 int maloai = (int) hs.get("maloai");
-
-                boolean check = sachDAO.capNhatThongTinSach(sach.getMasach(),tensach,tien,maloai);
+                int namxb = Integer.parseInt(edtNamXB.getText().toString());
+                boolean check = sachDAO.capNhatThongTinSach(sach.getMasach(),tensach,tien,maloai,namxb);
                 if (check){
                     Toast.makeText(context,"Cập nhật sách thành công",Toast.LENGTH_LONG).show();
                     loadData();
@@ -168,4 +179,5 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
         list = sachDAO.getDSDauSach();
         notifyDataSetChanged();
     }
+
 }

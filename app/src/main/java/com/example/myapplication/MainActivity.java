@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.adapter.SachAdapter;
 import com.example.myapplication.dao.ThuThuDAO;
 import com.example.myapplication.fragment.DoanhThuFragment;
 import com.example.myapplication.fragment.DoiMatKhauFragment;
@@ -46,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     FrameLayout frameLayout;
     DrawerLayout drawerLayout;
-    ArrayList<ThuThu> thuthulist;
-    ThuThuDAO thuThuDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

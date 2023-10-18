@@ -16,8 +16,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(dbThanhVien);
         String dbLoai = "CREATE TABLE LOAISACH(maloai INTEGER PRIMARY KEY  AUTOINCREMENT, tenloai TEXT)";
         sqLiteDatabase.execSQL(dbLoai);
-        String dbSach = "CREATE TABLE SACH(masach INTEGER PRIMARY KEY AUTOINCREMENT, tensach TEXT,  giathue INTEGER," +
-                " maloai  INTEGER REFERENCES LOAISACH(maloai))";
+        String dbSach = "CREATE TABLE SACH(masach INTEGER PRIMARY KEY AUTOINCREMENT, tensach TEXT,  giathue INTEGER,namxb INTEGER," + " maloai  INTEGER REFERENCES LOAISACH(maloai))";
         sqLiteDatabase.execSQL(dbSach);
         String dbPhieuMuon = "CREATE TABLE PHIEUMUON(mapm INTEGER PRIMARY KEY AUTOINCREMENT, matv  INTEGER REFERENCES THANHVIEN(matv)," +
                 " matt TEXT REFERENCES THUTHU(matt), masach  INTEGER REFERENCES SACH(masach), ngay TEXT, trasach INTEGER, tienthue INTEGER)";
@@ -25,7 +24,7 @@ public class DbHelper extends SQLiteOpenHelper {
         //data mau
         String qLoai = "INSERT INTO LOAISACH VALUES(1 ,'Thiếu nhi'),(2,'Ngôn tình'),(3,'Giáo khoa')";
         sqLiteDatabase.execSQL(qLoai);
-        String qSach = "INSERT INTO SACH VALUES(1,'Rùa và thỏ',10000,1),(2,'Bến xe',15000,2),(3,'Toán 12',20000,3)";
+        String qSach = "INSERT INTO SACH VALUES(1,'Rùa và thỏ',10000,2010,1),(2,'Bến xe',15000,2011,2),(3,'Toán 12',20000,2012,3)";
         sqLiteDatabase.execSQL(qSach);
         String qThuThu = "INSERT INTO THUTHU VALUES('admin','Tống Quang A','123','admin'),('thuthu01','Tống Quang B','123','thuthu'),('thuthu02','Tống Quang C','123','thuthu')";
         sqLiteDatabase.execSQL(qThuThu);

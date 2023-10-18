@@ -2,23 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerSach"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:hint="Search"
+            android:id="@+id/edtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </EditText>
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <Button
+            android:id="@+id/btnSapXep"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_btn"
+            android:text="Sắp xếp"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            app:backgroundTint="@null"></Button>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:id="@+id/recylerSach"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:background="#00BCD4"
         android:id="@+id/floatAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
+        android:background="#00BCD4"
         android:src="@drawable/baseline_add_24">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 </RelativeLayout>

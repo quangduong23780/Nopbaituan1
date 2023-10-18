@@ -22,7 +22,6 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
 
     private ArrayList<PhieuMuon> list;
     private Context context;
-
     public PhieuMuonAdapter(ArrayList<PhieuMuon> list, Context context) {
         this.list = list;
         this.context = context;
@@ -63,6 +62,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
                 if (check){
                     list.clear();
                     list = phieuMuonDAO.getDSPhieuMuon();
+                    notifyDataSetChanged();
                 }else {
                     Toast.makeText(context,"Thay đổi trạng thái thất bại",Toast.LENGTH_LONG).show();
                 }

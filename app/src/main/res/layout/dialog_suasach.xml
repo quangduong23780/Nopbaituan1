@@ -34,6 +34,13 @@
         android:layout_height="wrap_content">
     </EditText>
 
+    <EditText
+        android:id="@+id/edtNamXB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập năm xuất bản">
+    </EditText>
+
     <Spinner
         android:id="@+id/spnLoaiSach"
         android:layout_width="match_parent"
